@@ -1,0 +1,22 @@
+name: 'Less Advanced Security'
+description: 'Bring-your-own PR annotations to any tool which outputs sarif'
+author: '@eliblock'
+inputs:
+  github_app_id:
+    required: true
+    description: app id for GitHub application
+  github_app_install_id:
+    required: true
+    description: install id from GitHub application
+  github_app_key:
+    required: true
+    description: key from GitHub application. Will be placed in a temporary file and passed to less-advanced-security.
+  sarif_path:
+    required: true
+    description: path to sarif file containing annotations
+  filter_annotations:
+    description: '"true" to apply annotations only when they coincide with a changed line, "false" apply all annotations'
+    default: 'true'
+runs:
+  using: 'node16'
+  main: 'dist/index.js'
