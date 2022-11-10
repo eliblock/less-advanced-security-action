@@ -86,13 +86,27 @@ function getPRNumber(): number {
 }
 
 function getSHA(): string {
-  const sha = process.env.GITHUB_SHA
-  if (!sha) {
-    throw new Error('GITHUB_SHA is not set')
+  if (
+    !process.env.GITHUB_EVENT_PATH ||
+    !fs.existsSync(process.env.GITHUB_EVENT_PATH)
+  ) {
+    throw new Error('GITHUB_EVENT_PATH is null or the file does not exist')
+  }
+  const githubEvent = JSON.parse(
+    fs.readFileSync(process.env.GITHUB_EVENT_PATH, {encoding: 'utf8'})
+  )
+  if (
+    !githubEvent ||
+    !githubEvent.pull_request ||
+    !githubEvent.pull_request.head
+  ) {
+    throw new Error(
+      `github event was empty or had no pull request or the pull request had no head`
+    )
   }
 
-  core.debug(`Found SHA ${sha}'.`)
-  return sha
+  core.debug(`Found SHA ${githubEvent.pull_request.head.sha}'.`)
+  return githubEvent.pull_request.head.sha
 }
 
 function getOwnerRepo(): string {
