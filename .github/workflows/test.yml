@@ -13,3 +13,13 @@ jobs:
       - uses: actions/checkout@v3
       - run: npm install
       - run: npm run all
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: ./
+        with:
+          github_app_id: ${{ secrets.APP_ID }}
+          github_app_install_id: ${{ secrets.APP_INSTALL_ID }}
+          github_app_key: ${{ secrets.APP_KEY }}
+          sarif_path: .github/workflows/fixtures/readme-sarif.json
