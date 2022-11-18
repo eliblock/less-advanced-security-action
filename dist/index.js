@@ -289,7 +289,7 @@ const core = __importStar(__nccwpck_require__(2186));
 const exec = __importStar(__nccwpck_require__(1514));
 const args_1 = __nccwpck_require__(4133);
 const install_1 = __nccwpck_require__(9039);
-const lessAdvancedSecurityVersion = '0.1.0';
+const lessAdvancedSecurityVersion = '0.1.1';
 function run() {
     return __awaiter(this, void 0, void 0, function* () {
         try {
