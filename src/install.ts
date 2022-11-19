@@ -17,6 +17,7 @@ export function loadFromCache(version: string): string {
     return path.join(foundPath, lessAdvancedSecurityBinary)
   }
 
+  core.debug('Did not find in tool cache')
   return ''
 }
 

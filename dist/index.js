@@ -180,7 +180,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.downloadAndUnpack = void 0;
+exports.downloadAndUnpack = exports.loadFromCache = void 0;
 const core = __importStar(__nccwpck_require__(2186));
 const os = __importStar(__nccwpck_require__(2037));
 const path = __importStar(__nccwpck_require__(1017));
@@ -190,8 +190,22 @@ const supportedArchs = ['arm', 'arm64', 'x64'];
 const lessAdvancedSecurityOwner = 'eliblock';
 const lessAdvancedSecurityRepo = 'less-advanced-security';
 const lessAdvancedSecurityBinary = lessAdvancedSecurityRepo;
+function loadFromCache(version) {
+    const foundPath = tool_cache.find(lessAdvancedSecurityRepo, version);
+    if (foundPath !== '') {
+        core.debug(`Found directory in tool cache at '${foundPath}'`);
+        return path.join(foundPath, lessAdvancedSecurityBinary);
+    }
+    core.debug('Did not find in tool cache');
+    return '';
+}
+exports.loadFromCache = loadFromCache;
 function downloadAndUnpack(version) {
     return __awaiter(this, void 0, void 0, function* () {
+        const cachedPath = loadFromCache(version);
+        if (cachedPath !== '') {
+            return cachedPath;
+        }
         const platform = getPlatform();
         const arch = getArchitecture(platform);
         core.debug(`Detected platform '${platform}' and architecture '${arch}'.`);
@@ -206,9 +220,9 @@ function downloadAndUnpack(version) {
         }
         const destination = path.join(cacheDirectory, lessAdvancedSecurityOwner, lessAdvancedSecurityRepo, lessAdvancedSecurityTag, `${platform}-${arch}`);
         core.debug(`Extracting ${binPath} into ${destination}`);
-        yield tool_cache.extractTar(binPath, destination);
-        core.addPath(destination);
-        const installedPath = path.join(destination, lessAdvancedSecurityBinary);
+        const extractedFolder = yield tool_cache.extractTar(binPath, destination);
+        const cachedFolderPath = yield tool_cache.cacheDir(extractedFolder, lessAdvancedSecurityRepo, version);
+        const installedPath = path.join(cachedFolderPath, lessAdvancedSecurityBinary);
         core.info(`${lessAdvancedSecurityBinary} installed at ${installedPath}`);
         return installedPath;
     });
