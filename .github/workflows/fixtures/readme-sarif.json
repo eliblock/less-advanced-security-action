@@ -30,7 +30,7 @@
                         }
                     ],
                     "message": {
-                        "text": "👋 hello from `less-advanced-security-action`!"
+                        "text": "hello from less-advanced-security-action!"
                     },
                     "ruleId": "hello-readme"
                 }
@@ -44,7 +44,7 @@
                                 "level": "note"
                             },
                             "fullDescription": {
-                                "text": "👋 hello from less-advanced-security-action!"
+                                "text": "hello from less-advanced-security-action!"
                             },
                             "id": "hello-readme",
                             "name": "hello-readme",
@@ -53,7 +53,7 @@
                                 "tags": []
                             },
                             "shortDescription": {
-                                "text": "👋 hello from less-advanced-security-action!"
+                                "text": "hello from less-advanced-security-action!"
                             }
                         }
                     ],
