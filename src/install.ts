@@ -58,7 +58,7 @@ export async function restoreCache(
 }
 
 export function cacheKey(tag: string): string {
-  return `${lessAdvancedSecurityRepo}-${tag}}`
+  return `${lessAdvancedSecurityRepo}-${tag}`
 }
 
 export async function downloadAndUnpack(version: string): Promise<string> {

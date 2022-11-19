@@ -226,7 +226,7 @@ function restoreCache(executablePath, tag) {
 }
 exports.restoreCache = restoreCache;
 function cacheKey(tag) {
-    return `${lessAdvancedSecurityRepo}-${tag}}`;
+    return `${lessAdvancedSecurityRepo}-${tag}`;
 }
 exports.cacheKey = cacheKey;
 function downloadAndUnpack(version) {
