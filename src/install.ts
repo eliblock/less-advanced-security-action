@@ -10,7 +10,22 @@ const lessAdvancedSecurityOwner = 'eliblock'
 const lessAdvancedSecurityRepo = 'less-advanced-security'
 const lessAdvancedSecurityBinary = lessAdvancedSecurityRepo
 
+export function loadFromCache(version: string): string {
+  const foundPath = tool_cache.find(lessAdvancedSecurityRepo, version)
+  if (foundPath !== '') {
+    core.debug(`Found directory in tool cache at '${foundPath}'`)
+    return path.join(foundPath, lessAdvancedSecurityBinary)
+  }
+
+  return ''
+}
+
 export async function downloadAndUnpack(version: string): Promise<string> {
+  const cachedPath = loadFromCache(version)
+  if (cachedPath !== '') {
+    return cachedPath
+  }
+
   const platform = getPlatform()
   const arch = getArchitecture(platform)
   core.debug(`Detected platform '${platform}' and architecture '${arch}'.`)
@@ -38,10 +53,14 @@ export async function downloadAndUnpack(version: string): Promise<string> {
   )
 
   core.debug(`Extracting ${binPath} into ${destination}`)
-  await tool_cache.extractTar(binPath, destination)
-  core.addPath(destination)
+  const extractedFolder = await tool_cache.extractTar(binPath, destination)
+  const cachedFolderPath = await tool_cache.cacheDir(
+    extractedFolder,
+    lessAdvancedSecurityRepo,
+    version
+  )
 
-  const installedPath = path.join(destination, lessAdvancedSecurityBinary)
+  const installedPath = path.join(cachedFolderPath, lessAdvancedSecurityBinary)
   core.info(`${lessAdvancedSecurityBinary} installed at ${installedPath}`)
   return installedPath
 }
