@@ -1,0 +1,66 @@
+{
+    "$schema": "https://docs.oasis-open.org/sarif/sarif/v2.1.0/os/schemas/sarif-schema-2.1.0.json",
+    "runs": [
+        {
+            "invocations": [
+                {
+                    "executionSuccessful": true,
+                    "toolExecutionNotifications": []
+                }
+            ],
+            "results": [
+                {
+                    "locations": [
+                        {
+                            "physicalLocation": {
+                                "artifactLocation": {
+                                    "uri": "README.md",
+                                    "uriBaseId": "%SRCROOT%"
+                                },
+                                "region": {
+                                    "endColumn": 34,
+                                    "endLine": 1,
+                                    "snippet": {
+                                        "text": "Less Advanced Security (Action)"
+                                    },
+                                    "startColumn": 3,
+                                    "startLine": 1
+                                }
+                            }
+                        }
+                    ],
+                    "message": {
+                        "text": "hello from less-advanced-security-action!"
+                    },
+                    "ruleId": "hello-readme"
+                }
+            ],
+            "tool": {
+                "driver": {
+                    "name": "less-advanced-security tester",
+                    "rules": [
+                        {
+                            "defaultConfiguration": {
+                                "level": "note"
+                            },
+                            "fullDescription": {
+                                "text": "hello from less-advanced-security-action!"
+                            },
+                            "id": "hello-readme",
+                            "name": "hello-readme",
+                            "properties": {
+                                "precision": "very-high",
+                                "tags": []
+                            },
+                            "shortDescription": {
+                                "text": "hello from less-advanced-security-action!"
+                            }
+                        }
+                    ],
+                    "semanticVersion": "0.1.0"
+                }
+            }
+        }
+    ],
+    "version": "2.1.0"
+}
