@@ -1,5 +1,5 @@
-name: 'Less Advanced Security'
-description: 'Bring-your-own PR annotations to any tool which outputs sarif'
+name: Less Advanced Security
+description: Bring-your-own PR annotations to any tool which outputs sarif
 author: '@eliblock'
 inputs:
   github_app_id:
@@ -17,6 +17,9 @@ inputs:
   filter_annotations:
     description: '"true" to apply annotations only when they coincide with a changed line, "false" apply all annotations'
     default: 'true'
+  check_name:
+    description: override of the default name for the check. When set, this string is used instead of the tool driver name found in the sarif.
+    default: ''
 runs:
-  using: 'node16'
-  main: 'dist/index.js'
+  using: node16
+  main: dist/index.js

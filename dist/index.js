@@ -57,13 +57,14 @@ function getArgs() {
             repo: getOwnerRepo(),
             pr: getPRNumber(),
             sarif_path: getSarifPath(),
-            filter_annotations: core.getBooleanInput('filter_annotations')
+            filter_annotations: core.getBooleanInput('filter_annotations'),
+            check_name_override: core.getInput('check_name')
         };
     });
 }
 exports.getArgs = getArgs;
 function convertToCliArgs(args) {
-    return [
+    const argList = [
         `--app_id=${args.app_id}`,
         `--install_id=${args.install_id}`,
         `--key_path=${args.key_path}`,
@@ -73,6 +74,10 @@ function convertToCliArgs(args) {
         `--sarif_path=${args.sarif_path}`,
         `--filter_annotations=${args.filter_annotations}`
     ];
+    if (args.check_name_override) {
+        argList.push(`--check_name "${args.check_name_override}"`);
+    }
+    return argList;
 }
 exports.convertToCliArgs = convertToCliArgs;
 function cleanKey() {
@@ -338,7 +343,7 @@ const core = __importStar(__nccwpck_require__(2186));
 const exec = __importStar(__nccwpck_require__(1514));
 const args_1 = __nccwpck_require__(4133);
 const install_1 = __nccwpck_require__(9039);
-const lessAdvancedSecurityVersion = '0.1.2';
+const lessAdvancedSecurityVersion = '0.1.3';
 function run() {
     return __awaiter(this, void 0, void 0, function* () {
         try {
