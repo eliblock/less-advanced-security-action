@@ -15,3 +15,12 @@ jobs:
           github_app_key: ${{ secrets.APP_KEY }}
           sarif_path: .github/workflows/fixtures/readme-sarif.json
           filter_annotations: false
+      - name: 🏃 run again with custom name 📇committed action
+        uses: ./
+        with:
+          github_app_id: ${{ secrets.APP_ID }}
+          github_app_install_id: ${{ secrets.APP_INSTALL_ID }}
+          github_app_key: ${{ secrets.APP_KEY }}
+          sarif_path: .github/workflows/fixtures/readme-sarif.json
+          filter_annotations: false
+          check_name: 🏃2️⃣ (name override)
