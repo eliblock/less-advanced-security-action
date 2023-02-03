@@ -16,6 +16,7 @@ interface LessAdvancedSecurityArgs {
   pr: number
   sarif_path: string
   filter_annotations: boolean
+  check_name_override: string
 }
 
 export async function getArgs(): Promise<LessAdvancedSecurityArgs> {
@@ -27,12 +28,13 @@ export async function getArgs(): Promise<LessAdvancedSecurityArgs> {
     repo: getOwnerRepo(),
     pr: getPRNumber(),
     sarif_path: getSarifPath(),
-    filter_annotations: core.getBooleanInput('filter_annotations')
+    filter_annotations: core.getBooleanInput('filter_annotations'),
+    check_name_override: core.getInput('check_name')
   }
 }
 
 export function convertToCliArgs(args: LessAdvancedSecurityArgs): string[] {
-  return [
+  const argList: string[] = [
     `--app_id=${args.app_id}`,
     `--install_id=${args.install_id}`,
     `--key_path=${args.key_path}`,
@@ -44,6 +46,12 @@ export function convertToCliArgs(args: LessAdvancedSecurityArgs): string[] {
     `--sarif_path=${args.sarif_path}`,
     `--filter_annotations=${args.filter_annotations}`
   ]
+
+  if (args.check_name_override) {
+    argList.push(`--check_name=${args.check_name_override}`)
+  }
+
+  return argList
 }
 
 export async function cleanKey(): Promise<void> {

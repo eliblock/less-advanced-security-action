@@ -63,6 +63,10 @@ jobs:
 
 _Optional_, defaulting to `true`. Boolean. Whether or not annotations should be filtered to the `patch` in the PR being analyzed.
 
+##### `filter_annotations`
+
+_Optional_, defaulting to the tool driver name found in the sarif. String. Overrides the name of the check. Use this if you run the same tool multiple times on a PR (and need the checks to not collide).
+
 ## Development
 
 ### Environment
