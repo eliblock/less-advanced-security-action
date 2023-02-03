@@ -48,7 +48,7 @@ export function convertToCliArgs(args: LessAdvancedSecurityArgs): string[] {
   ]
 
   if (args.check_name_override) {
-    argList.push(`--check_name "${args.check_name_override}"`)
+    argList.push(`--check_name="${args.check_name_override}"`)
   }
 
   return argList

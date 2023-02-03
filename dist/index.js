@@ -75,7 +75,7 @@ function convertToCliArgs(args) {
         `--filter_annotations=${args.filter_annotations}`
     ];
     if (args.check_name_override) {
-        argList.push(`--check_name "${args.check_name_override}"`);
+        argList.push(`--check_name="${args.check_name_override}"`);
     }
     return argList;
 }
