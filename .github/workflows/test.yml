@@ -15,7 +15,7 @@ jobs:
           github_app_key: ${{ secrets.APP_KEY }}
           sarif_path: .github/workflows/fixtures/readme-sarif.json
           filter_annotations: false
-      - name: 🏃 run again with custom name 📇committed action
+      - name: 🏃 run committed action again with custom name 📇
         uses: ./
         with:
           github_app_id: ${{ secrets.APP_ID }}
