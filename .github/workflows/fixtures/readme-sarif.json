@@ -33,6 +33,30 @@
                         "text": "hello from less-advanced-security-action!"
                     },
                     "ruleId": "hello-readme"
+                }, {
+                    "locations": [
+                        {
+                            "physicalLocation": {
+                                "artifactLocation": {
+                                    "uri": "README.md",
+                                    "uriBaseId": "%SRCROOT%"
+                                },
+                                "region": {
+                                    "endColumn": 34,
+                                    "endLine": 1,
+                                    "snippet": {
+                                        "text": "Less Advanced Security (Action)"
+                                    },
+                                    "startColumn": 3,
+                                    "startLine": 1
+                                }
+                            }
+                        }
+                    ],
+                    "message": {
+                        "text": "hello from less-advanced-security-action!"
+                    },
+                    "ruleId": "hello-readme"
                 }
             ],
             "tool": {
