@@ -79,5 +79,5 @@ npm install
 ### Package
 
 ```sh
-npm build && npm package
+npm run build && npm run package
 ```
