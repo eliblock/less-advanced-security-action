@@ -4,7 +4,7 @@ import * as exec from '@actions/exec'
 import {cleanKey, convertToCliArgs, getArgs} from './args'
 import {downloadAndUnpack} from './install'
 
-const lessAdvancedSecurityVersion = '0.1.3'
+const lessAdvancedSecurityVersion = '0.2.0'
 
 async function run(): Promise<void> {
   try {
