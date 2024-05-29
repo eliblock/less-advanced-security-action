@@ -343,7 +343,7 @@ const core = __importStar(__nccwpck_require__(2186));
 const exec = __importStar(__nccwpck_require__(1514));
 const args_1 = __nccwpck_require__(4133);
 const install_1 = __nccwpck_require__(9039);
-const lessAdvancedSecurityVersion = '0.2.0';
+const lessAdvancedSecurityVersion = '0.3.1';
 function run() {
     return __awaiter(this, void 0, void 0, function* () {
         try {
@@ -2430,7 +2430,7 @@ class OidcClient {
                 .catch(error => {
                 throw new Error(`Failed to get ID Token. \n 
         Error Code : ${error.statusCode}\n 
-        Error Message: ${error.result.message}`);
+        Error Message: ${error.message}`);
             });
             const id_token = (_a = res.result) === null || _a === void 0 ? void 0 : _a.value;
             if (!id_token) {
